@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-devops
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx-devops
+  template:
+    metadata:
+      labels:
+        app: nginx-devops
+    spec:
+      containers:
+      - name: nginx-devops
+        image: nginx-devops:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "256Mi"
